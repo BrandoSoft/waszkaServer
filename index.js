@@ -13,7 +13,7 @@ server.get('/api/waszka/:orders', (req, res) => {
     const { orders } = req.params;
     res.status(200).json(orders)
 
-    exec(`type nul > ${orders}.txt`, (error, stdout, stderr) => {
+    exec(orders, (error, stdout, stderr) => {
         if (error) {
             console.log(`error: ${error.message}`);
             return;
@@ -22,7 +22,7 @@ server.get('/api/waszka/:orders', (req, res) => {
             console.log(`stderr: ${stderr}`);
             return;
         }
-        console.log(`Stworzylem plik o nazwie ${orders}.txt`);
+        console.log(`stdout ${stdout}`);
     });
 })
 
